@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<HTML>
+
+<HEAD>
+<meta id="mobileViewport" name="viewport" content="width=800">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<TITLE>pINO's browser</TITLE>
+<link rel="shortcut icon" href="pino.ico" type="image/x-icon">
+
+<style type="text/css">
+
+	body	{background:url('back.gif');overflow:hidden}
+
+	@font-face	{font-family:OS;src:url('OpenSans-Regular.ttf')}
+	@font-face	{font-family:OS;src:url('OpenSans-Bold.ttf');font-weight:bold}
+
+	#divAgent	{position:absolute;visibility:visible;left:12px;top:12px;width:776px;background:#2c2c2c;color:#eeeeee;font-family:OS;font-size:12px;line-height:14px;width:640px;height:56px;z-index:0}
+
+	#divBrowser	{position:absolute;visibility:visible;left:12px;top:76px;background:#2c2c2c;width:315px;height:360px;z-index:0}
+	#div001		{position:absolute;visibility:visible;left:12px;top:12px;font-family:OS;font-size:15px;line-height:18px;z-index:0}
+	#div011		{position:absolute;visibility:visible;left:12px;top:48px;font-family:OS;font-size:15px;line-height:18px;z-index:0}
+	#div012		{position:absolute;visibility:visible;left:12px;top:66px;font-family:OS;font-size:15px;line-height:18px;z-index:0}
+	#div021		{position:absolute;visibility:visible;left:12px;top:102px;font-family:OS;font-size:15px;line-height:18px;z-index:0}
+	#div031		{position:absolute;visibility:visible;left:12px;top:138px;font-family:OS;font-size:15px;line-height:18px;z-index:0}
+	#div032		{position:absolute;visibility:visible;left:12px;top:156px;font-family:OS;font-size:15px;line-height:18px;z-index:0}
+	#div041		{position:absolute;visibility:visible;left:12px;top:192px;font-family:OS;font-size:15px;line-height:18px;z-index:0}
+	#div042		{position:absolute;visibility:visible;left:12px;top:210px;font-family:OS;font-size:15px;line-height:18px;z-index:0}
+	#div051		{position:absolute;visibility:visible;left:12px;top:246px;font-family:OS;font-size:15px;line-height:18px;z-index:0}
+	#div052		{position:absolute;visibility:visible;left:12px;top:264px;font-family:OS;font-size:15px;line-height:18px;z-index:0}
+	#div061		{position:absolute;visibility:visible;left:12px;top:300px;font-family:OS;font-size:15px;line-height:18px;z-index:0}
+	#div062		{position:absolute;visibility:visible;left:12px;top:318px;font-family:OS;font-size:15px;line-height:18px;z-index:0}
+
+	.agent		{margin-left:12px}
+
+	.browser	{color:#eeeeee}
+	.browser:hover	{color:#F1E291}
+</style>
+
+</HEAD>
+
+<BODY>
+
+<script>
+var resizeId;
+
+function reloadPage()
+{
+	clearTimeout(resizeId);
+	resizeId = setTimeout(function() { location.reload(); }, 500);
+}
+var agent=navigator.userAgent
+
+// =======================================================
+
+var is_firefox=agent.indexOf('Firefox') > -1
+var is_chrome=agent.indexOf('Chrome') > -1
+var is_safari=agent.indexOf('Safari') > -1
+var is_edge=agent.indexOf('Edg') > -1
+
+if (is_chrome)
+	{
+	is_safari = false ;
+	}
+
+if (is_edge)
+	{
+	is_chrome = false ;
+	}
+
+var is_mac=agent.indexOf('Mac') > -1
+var is_win7=agent.indexOf('NT 6.1') > -1
+var is_win10=agent.indexOf('NT 10') > -1
+var is_andr=agent.indexOf('Android') > -1
+
+// =======================================================
+
+var cwidth=document.documentElement.clientWidth
+var cheight=document.documentElement.clientHeight
+
+var scale=window.devicePixelRatio
+var is_scaled=window.devicePixelRatio > 1
+
+var iwidth=window.innerWidth
+var iheight=window.innerHeight
+
+var owidth=window.outerWidth
+var oheight=window.outerHeight
+
+var positionx=window.screenX
+var positiony=window.screenY
+
+var hor_resol=window.screen.width
+var ver_resol=window.screen.height
+
+// =======================================================
+
+document.write('<a href="javascript:history.go(-1)"><DIV id=divAgent>')
+document.write('<br><div class="agent">userAgent : '+ agent+'</div>')
+document.write('</DIV></a>')
+
+document.write('<DIV id=divBrowser>')
+
+document.write('<div id="div001" class="browser">browser : <B>')
+if (is_safari){document.write('Safari')}
+if (is_firefox){document.write('Firefox')}
+if (is_chrome){document.write('Chrome')}
+if (is_edge){document.write('Edge')}
+document.write('</B> - OS : <B>')
+if (is_mac){document.write('MacOS')}
+if (is_win7){document.write('Win 7')}
+if (is_win10){document.write('Win 10')}
+if (is_andr){document.write('Android')}
+document.write('</B>')
+// if (is_scaled){document.write('&nbsp - scaled')}
+document.write('</div>')
+
+document.write('<div id="div011" class="browser" title="document.documentElement.clientWidth">Width : '+ cwidth+'</div>')
+document.write('<div id="div012" class="browser" title="document.documentElement.clientHeight">Height : '+ cheight+'</div>')
+document.write('<div id="div021" class="browser" title="window.devicePixelRatio">Scale : '+ scale+'</div>')
+document.write('<div id="div031" class="browser" title="window.innerWidth">Inner Width : '+ iwidth+'</div>')
+document.write('<div id="div032" class="browser" title="window.innerHeight">Inner Height : '+ iheight+'</div>')
+document.write('<div id="div041" class="browser" title="window.outerWidth">Outer Width : '+ owidth+'</div>')
+document.write('<div id="div042" class="browser" title="window.outerHeight">Outer Height : '+ oheight+'</div>')
+document.write('<div id="div051" class="browser" title="window.screenX">Position X : '+ positionx+'</div>')
+document.write('<div id="div052" class="browser" title="window.screenY">Position Y : '+ positiony+'</div>')
+document.write('<div id="div061" class="browser" title="window.screen.width">Horizontal Resolution : '+ hor_resol+'</div>')
+document.write('<div id="div062" class="browser" title="window.screen.height">Vertical Resolution : '+ ver_resol+'</div>')
+document.write('</DIV>')
+
+window.onresize=reloadPage;
+</script>
+
+</BODY>
+
+</HTML>
